@@ -9,6 +9,7 @@ function App() {
   const [todoData, setTodoData] = useState(["Banking Module", "Sasria Module","Bulk Upload","Memo",]);
   const [workingData, setWorkingData] = useState(["Section Module"]);
   const [doneData, setDoneData] = useState(["Item Module"]);
+  const [inputText,setInputText] = useState("")
 
   const onDragStart = (item) => (e) => {
     setDraggedItem(item);
@@ -37,8 +38,17 @@ function App() {
     cursor: "move"
   };
 
+  const addHandle = () => {
+    setTodoData([...todoData,inputText])
+    setInputText("")
+  }
+
   return (
     <>
+    <h1 style={{textAlign:"center"}}>TODO Board(Draggable)</h1>
+    <div style={{ width: "100%"}}></div>
+    <input type="text" value={inputText} placeholder="Enter a todo task" onChange={(e)=>{setInputText(e.target.value)}} style={{margin:"10px 0",padding: "5px" }}/>
+    <button onClick={addHandle} style={{margin:"10px 10px",padding: "5px" }}>Add</button>
       <div style={{display:'flex', flexDirection:'row'}}>
         <div
           style={{width:"33%", border: "2px green solid"}}
